@@ -1,0 +1,24 @@
+from math import*
+import sympy as sp 
+x = sp.Symbol('x') 
+print("Método de Newton\n")
+ecuacion=input("Ingrese la función f(x):")
+print("Ingrese el valores iniciales\n")
+xn=float(input("x_n="))
+xn1=float(input("x_n-1="))
+derivada=str(sp.diff(ecuacion,x))
+def f(x):
+	return eval(ecuacion)	
+def g(x):
+	return eval(derivada)
+print("Ingrese la tolerancia:\n")
+tol= float(input("Tol= "))
+e=1
+iteraciones=1
+while e>tol:
+	xn2=xn-f(xn)*(xn-xn1)/(f(xn)-f(xn1))
+	print('{:^10}{:^10f}'.format(iteraciones,xn2))
+	e=abs(xn2-xn)/abs(xn2)
+	xn1=xn
+	xn=xn2
+	iteraciones=iteraciones+1

@@ -1,0 +1,96 @@
+from math import*
+############# Datos ##############################
+print("Método de bisección\n")
+print("Ingrese los límites de integración en y\n ")
+I=0.0
+ecuacion = input("c(x)= ")
+ecuacion2 = input("d(x)= ")
+m = int(input("ingrese m par= "))
+print("\n Ingrese los límites de integración en x\n ")
+a = float(input("a= "))
+b = float(input("b= "))
+n = int(input("ingrese n par= "))
+print("\n Ingrese la función a integrar\n ")
+ecuacion3 = input("f(x,y)= ")
+############### Definimos a la función #############
+def c(x):
+	return eval(ecuacion)
+def d(x):
+	return eval(ecuacion2)
+def f(x,y):
+	return eval(ecuacion3)
+####################################################
+limy1=m/2
+limy1=m/2+1
+
+ha=(d(a)-c(a))/m
+j=1
+sum1=0
+while j<limy1:
+	sum1=sum1+f(a,c(a)+2*j*ha)
+	j=j+1
+
+j=1
+sum2=0
+while j<limy1:
+	sum2=sum2+f(a,c(a)+(2*j-1)*ha)
+	j=j+1
+ga=(ha/3)*(f(a,c(a))+2*sum1+4*sum2+f(a,d(a)))
+
+hb=(d(b)-c(b))/m
+j=1
+sum1=0
+while j<limy1:
+	sum1=sum1+f(b,c(b)+2*j*hb)
+	j=j+1
+j=1
+sum2=0
+while j<limy1:
+	sum2=sum2+f(b,c(b)+(2*j-1)*hb)
+	j=j+1
+gb=(hb/3)*(f(b,c(b))+2*sum1+4*sum2+f(b,d(b)))
+
+limx1=n/2
+limx2=n/2+1
+gxi=0
+i=1
+k=(b-a)/n
+while i<limx1:
+	xi=a+2*i*k
+	hxi=(d(xi)-c(xi))/m
+	j=1
+	sum1=0
+	while j<limy1:
+		sum1=sum1+f(xi,c(xi)+2*j*hxi)
+		j=j+1
+
+	j=1
+	sum2=0
+	while j<limy1:
+		sum2=sum2+f(xi,c(xi)+(2*j-1)*hxi)
+		j=j+1
+	gxi=gxi+(hxi/3)*(f(xi,c(xi))+2*sum1+4*sum2+f(xi,d(xi)))	
+	i=i+1
+
+i=1
+gxi1=0
+hxi=0
+while i<limx2:
+	xi=a+(2*i-1)*k
+	hxi=(d(xi)-c(xi))/m
+	j=1
+	sum1=0
+	while j<limy1:
+		sum1=sum1+f(xi,c(xi)+2*j*hxi)
+		j=j+1
+
+	j=1
+	sum2=0
+	while j<limy1:
+		sum2=sum2+f(xi,c(xi)+(2*j-1)*hxi)
+		j=j+1
+	gxi1=gxi1+(hxi/3)*(f(xi,c(xi))+2*sum1+4*sum2+f(xi,d(xi)))	
+	i=i+1
+
+I=(k/3)*(ga+2*gxi+4*gxi1+gb)
+print("El valor aprimado de la integral es ",I)

@@ -1,0 +1,19 @@
+from math import*
+import numpy as np
+############# Datos ##############################
+print("Método de euler orden 2\n")
+print("Ingrese el intervalo ")
+a=float(input("a="))
+b=float(input("b="))
+n=int(input("\n Ingrese n entero n="))
+y=np.zeros(n+1)
+h=(b-a)/n
+y[0] = float(input("\n Ingrese el valor de la condición inicial y(0)= "))
+####################################################
+i=0
+ti=0
+while i<n:
+	ti=a+i*h
+	y[i+1]=y[i]+h*((y[i]-ti**2+1)*(1+h/2)-h*ti)
+	print("y(ti+1)=",y[i+1])
+	i=i+1

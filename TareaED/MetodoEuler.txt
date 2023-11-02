@@ -1,0 +1,29 @@
+import matplotlib.pyplot as plt
+import numpy as np
+############# Datos ##############################
+print("Método de euler\n")
+print("Ingrese el intervalo\n ")
+a = float(input("a= "))
+b = float(input("b= "))
+n = int(input("Ingrese n entero= "))
+y=np.zeros(n+1)
+t=np.zeros(n+1)
+h=(b-a)/n
+ecuacion3 = input("\n Ingrese la función f(t,y)= ")
+y[0] = float(input("\n Ingrese el valor de la condición inicial y(0)= "))
+############### Definimos a la función #############
+def f(t,y):
+	return eval(ecuacion3)
+####################################################
+i=0
+while i<n:
+	t[i]=a+i*h
+	y[i+1]=y[i]+h*f(t[i],y[i])
+	print("y(ti+1)=",y[i+1])
+	i=i+1
+plt.plot(t,y)
+plt.title("Método Euler")
+plt.xlabel('t')
+plt.ylabel('y')
+plt.show()
+	

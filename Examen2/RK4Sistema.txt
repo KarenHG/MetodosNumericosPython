@@ -1,0 +1,44 @@
+from math import*
+import matplotlib.pyplot as plt
+import numpy as np
+############# Datos ##############################
+print("Método de RK4 para sistemas de ecuaciones diferenciales\n")
+print("Ingrese el intervalo\n ")
+a = float(input("a= "))
+b = float(input("b= "))
+n = int(input("Ingrese n entero= "))
+y=np.zeros(n+1)
+x=np.zeros(n+1)
+h=(b-a)/n
+ecuacion1 = input("\n Ingrese la función f(t,y,x)= ")
+ecuacion2 = input("\n Ingrese la función g(t,x,y)= ")
+y[0] = float(input("\n Ingrese el valor de la condición inicial y(0)= "))
+x[0] = float(input("\n Ingrese el valor de la condición inicial x(0)= "))
+############### Definimos las función #############
+def f(x,y,t):
+	return eval(ecuacion1)
+def g(x,y,t):
+	return eval(ecuacion2)
+####################################################
+i=0
+ti=0
+while i<n:
+	ti=a+i*h
+	k1=h*f(x[i],y[i],ti)
+	l1=h*g(x[i],y[i],ti)
+	k2=h*f(x[i]+k1/2,y[i]+l1/2,ti+h/2)
+	l2=h*g(x[i]+k1/2,y[i]+l1/2,ti+h/2)
+	k3=h*f(x[i]+k2/2,y[i]+l2/2,ti+h/2)
+	l3=h*g(x[i]+k2/2,y[i]+l2/2,ti+h/2)
+	k4=h*f(x[i]+k3,y[i]+l3,ti+h)
+	l4=h*g(x[i]+k3,y[i]+l3,ti+h)
+	x[i+1]=x[i]+(1/6)*(k1+2*k2+2*k3+k4)
+	y[i+1]=y[i]+(1/6)*(l1+2*l2+2*l3+l4)
+	print("y(ti+1)=",y[i+1])
+	print("x(ti+1)=",x[i+1])
+	i=i+1
+plt.plot(x,y)
+plt.title("Método Runge Kutta")
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()

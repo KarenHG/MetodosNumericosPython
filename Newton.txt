@@ -1,0 +1,18 @@
+from math import*
+from scipy.misc import derivative
+print("Método de Newton\n")
+ecuacion=input("Ingrese la función f(x):")
+print("Ingrese el valor inicial\n")
+x0=float(input("x_0="))
+def f(x):
+	return eval(ecuacion)	
+print("Ingrese la tolerancia:\n")
+tol= float(input("Tol= "))
+e=1
+iteraciones=1
+while e>tol:
+	xn=x0-f(x0)/derivative(f,x0)
+	print('{:^10}{:^10f}'.format(iteraciones,xn))
+	e=abs(xn-x0)/abs(xn)
+	x0=xn
+	iteraciones=iteraciones+1

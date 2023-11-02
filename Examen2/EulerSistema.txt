@@ -1,0 +1,36 @@
+from math import*
+import matplotlib.pyplot as plt
+import numpy as np
+############# Datos ##############################
+print("Método de euler para sistemas de ecuaciones diferenciales\n")
+print("Ingrese el intervalo\n ")
+a = float(input("a= "))
+b = float(input("b= "))
+n = int(input("Ingrese n entero= "))
+y=np.zeros(n+1)
+x=np.zeros(n+1)
+h=(b-a)/n
+ecuacion1 = input("\n Ingrese la función f(t,y,x)= ")
+ecuacion2 = input("\n Ingrese la función g(t,x,y)= ")
+y[0] = float(input("\n Ingrese el valor de la condición inicial y(0)= "))
+x[0] = float(input("\n Ingrese el valor de la condición inicial x(0)= "))
+############### Definimos las función #############
+def f(t,y,x):
+	return eval(ecuacion1)
+def g(t,y,x):
+	return eval(ecuacion2)
+####################################################
+i=0
+ti=0
+while i<n:
+	ti=a+i*h
+	y[i+1]=y[i]+h*g(ti,y[i],x[i])
+	x[i+1]=x[i]+h*f(ti,y[i],x[i])
+	print("y(ti+1)=",y[i+1])
+	print("x(ti+1)=",x[i+1])
+	i=i+1
+plt.plot(x,y)
+plt.title("Método Euler")
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show()
